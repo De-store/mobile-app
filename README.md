@@ -1,10 +1,13 @@
-### This is the main branch.
+### This is the Dev branch.
 
-#### Development branch:
->dev
+All the development code is pushed to this branch. 
 
-#### Test branch:
->test
+To run dev:
 
-#### Production branch:
->prod
+```
+npm i
+
+npx react-native run-android
+```
+
+NOTE: Connect android emulator or phone to run the application.  
