@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.new_app",
+    package = "com.de_store",
 )
 
 android_resource(
     name = "res",
-    package = "com.new_app",
+    package = "com.de_store",
     res = "src/main/res",
 )
 

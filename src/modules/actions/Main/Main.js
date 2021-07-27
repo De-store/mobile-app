@@ -11,11 +11,9 @@ export function getFileData(_searchName = "") {
             //Send properties get request
 
             const applications = await graphQuery(_searchName)
-            console.log("APPLICATION ", applications, JSON.stringify(applications))
             dispatch(getFileDataSuccess(applications))
 
         } catch (err) {
-            console.log("ERR ", err, err.message, err.data)
             dispatch(getFileDataFailure(err.message))
 
         }

@@ -75,7 +75,6 @@ export const graphQuery = async (appName = "") => {
             }
         }
         `
-    console.log("tokensQuery ", tokensQuery)
 
     const client = new ApolloClient({
         uri: API_URL,
@@ -88,12 +87,9 @@ export const graphQuery = async (appName = "") => {
         const data = await client.query({
             query: gql(tokensQuery)
         })
-        console.log("DATA ", data, data.data.exampleEntities)
         let _data = data.data.exampleEntities;
 
         for (let i in _data) {
-            console.log("ipfsResponse ", _data)
-            console.log("ipfsResponse i", i)
             const appData = {
                 appId: _data[i].RegisteredApp_appId,
                 name: _data[i].RegisteredApp_name,
@@ -106,8 +102,6 @@ export const graphQuery = async (appName = "") => {
         }
 
         // for (let i in ipfsResponse) {
-        //     console.log("ipfsResponse ", ipfsResponse)
-        //     console.log("ipfsResponse i", i)
         //     const appData = {
         //         appId: data.data.exampleEntities[i].appId,
         //         name: ipfsResponse[i].name,
@@ -122,7 +116,6 @@ export const graphQuery = async (appName = "") => {
 
 
     } catch (err) {
-        console.log("ERR ", err)
         throw err
     }
 }
@@ -133,7 +126,6 @@ export const getAppQuery = async (availableData) => {
 
     const API_URL = "https://api.thegraph.com/subgraphs/name/surajsingla333/de-store-graph";
 
-    console.log("API_URL ", API_URL)
 
     const tokensQuery = `
         query {
@@ -151,7 +143,6 @@ export const getAppQuery = async (availableData) => {
             }
         }
         `
-    console.log("tokensQuery ", tokensQuery)
 
     const client = new ApolloClient({
         uri: API_URL,
@@ -164,7 +155,6 @@ export const getAppQuery = async (availableData) => {
             query: gql(tokensQuery)
         })
         const _data = data.data.exampleEntities[0]
-        console.log("\nDATA \n", _data)
 
         const appData = {
             appId: _data.RegisteredApp_appId,
@@ -189,7 +179,6 @@ export const getAppQuery = async (availableData) => {
 
 
     } catch (err) {
-        console.log("ERR ", err)
         throw err
     }
 }

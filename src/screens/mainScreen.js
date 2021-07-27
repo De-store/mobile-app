@@ -28,16 +28,12 @@ class MainScreen extends Component {
     }
 
     componentDidMount() {
-        console.log("\n\nAPPLE in refresh IN CHECK \n\n\n/n/n")
         this.props.getFiles()
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log("prevProps ", prevProps)
-        console.log("this.props ", this.props)
         const { main } = this.props
         if (!main.loading && !main.error && main.files.length > 0 && prevProps.main.loading !== main.loading && this.state.currentFiles !== main.files) {
-            console.log("IN ID ", main)
             this.setState({
                 currentFiles: main.files
             })

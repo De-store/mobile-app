@@ -14,9 +14,7 @@ class AppScreen extends Component {
     }
 
     componentDidMount() {
-        console.log("THIS PROPS IN DETAILS ", JSON.stringify(this.props))
         if (this.props.route && this.props.route.params && this.props.route.params.data) {
-            console.log("this.props.route.params.data ", this.props.route.params.data)
             this.props.appDetails(this.props.route.params.data)
         } else {
             this.props.navigation.navigate("Main")

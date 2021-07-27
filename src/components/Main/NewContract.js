@@ -30,10 +30,6 @@ class NewContract extends Component {
     componentDidUpdate(prevProps, prevState) {
         const { main: prevvMain } = prevProps
         const { main: thisMain } = this.props
-        console.log("this.props ", JSON.stringify(this.props))
-        console.log("prevProps ", JSON.stringify(prevProps))
-        console.log("prevState ", JSON.stringify(prevState))
-        console.log("this.state ", JSON.stringify(this.state))
         if (prevState.allFiles !== thisMain.files && !thisMain.loading && !thisMain.error) {
             this.setState({
                 allFiles: thisMain.files
@@ -60,7 +56,6 @@ class NewContract extends Component {
     render() {
         const { allFiles, searchValue } = this.state
 
-        console.log("allFiles ", allFiles)
 
         const listItem = ({ item }) => {
             return (

@@ -1,4 +1,4 @@
-package com.new_app;
+package com.de_store;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,7 +10,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "new_app";
+    return "de_store";
   }
 
   // @Override

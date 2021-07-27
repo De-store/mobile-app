@@ -32,10 +32,7 @@ class AppDetails extends Component {
     }
 
     componentWillReceiveProps() {
-        console.log("this.props in componentWillReceiveProps", this.props)
         const { appDetails: thisAppDetails } = this.props
-        console.log("this.props in componentWillReceiveProps", JSON.stringify(this.props))
-        console.log("this.state in componentWillReceiveProps", JSON.stringify(this.state))
         if (this.state.currentApp !== thisAppDetails.app && !thisAppDetails.loading && !thisAppDetails.error) {
             this.setState({
                 currentApp: thisAppDetails.app
@@ -46,10 +43,6 @@ class AppDetails extends Component {
     componentDidUpdate(prevProps, prevState) {
         const { appDetails: prevAppDetails } = prevProps
         const { appDetails: thisAppDetails } = this.props
-        console.log("this.props in componentDidUpdate ", JSON.stringify(this.props))
-        console.log("prevProps in componentDidUpdate ", JSON.stringify(prevProps))
-        console.log("prevState in componentDidUpdate ", JSON.stringify(prevState))
-        console.log("this.state in componentDidUpdate ", JSON.stringify(this.state))
         if (prevState.currentApp !== thisAppDetails.app && !thisAppDetails.loading && !thisAppDetails.error) {
             this.setState({
                 currentApp: thisAppDetails.app
@@ -88,19 +81,14 @@ class AppDetails extends Component {
         config(options)
             .fetch('GET', FILE_URL)
             .progress((received, total) => {
-                console.log('progress', received / total)
             })
             .then(res => {
                 // Alert after successful downloading
-                console.log('res -> ', JSON.stringify(res));
-                console.log('File Downloaded Successfully.');
-                console.log("RES.path ", res.path())
                 this.setState({
                     apkInstalling: false
                 })
                 android.actionViewIntent(res.path(), TYPE_APK)
             }).catch(err => {
-                console.log("ERR ", err)
                 this.setState({
                     apkInstalling: false
                 })
@@ -115,7 +103,6 @@ class AppDetails extends Component {
         const { currentApp: data, apkInstalling } = this.state
         const { appDetails } = this.props
 
-        console.log("data ", data)
         if (appDetails.loading || data === {})
             return (
                 <ActivityIndicator style={{ marginTop: 10 }} size="small" color="black" />
@@ -127,7 +114,6 @@ class AppDetails extends Component {
         else if (Object.keys(data).length) {
             let icon_url = { uri: createIpfsUrl(data.icon.hash) }
             let image_url = { uri: createIpfsUrl(data.images.hash) }
-            console.log("DATA in else", data)
             return (
 
                 <LinearGradient

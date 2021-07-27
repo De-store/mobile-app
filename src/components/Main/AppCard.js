@@ -8,7 +8,6 @@ class AppCard extends Component {
 
     render() {
         const { data, onCardClick } = this.props
-        console.log("Data ", data)
         let icon_url = { uri: createIpfsUrl(data.icon.hash) }
         return (
             <TouchableOpacity key={data.appId} style={styles.contentItem} onPress={() => { onCardClick(data) }}>

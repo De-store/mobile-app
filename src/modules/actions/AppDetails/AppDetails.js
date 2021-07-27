@@ -9,13 +9,10 @@ export function getAppDetails(_data) {
             //Dispatch start
             dispatch(getAppDetailsStart())
             //Send properties get request
-            console.log("DATA in action", _data)
             
             const applications = await getAppQuery(_data)
-            console.log("APPLICATION ", applications, JSON.stringify(applications))
             dispatch(getAppDetailsSuccess(applications))
         } catch (err) {
-            console.log("ERR ", err, err.message, err.data)
             dispatch(getAppDetailsFailure(err.message))
         }
     }

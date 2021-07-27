@@ -9,10 +9,7 @@ const initialState = {
 
 //Export new state using switch
 export default (state = initialState, action = {}) => {
-    // console.log("REDUCER ", action)
-    // console.log("action.type ", action.type, action.type === APP_DETAILS_SUCCESS)
     // if(action.type === APP_DETAILS_SUCCESS){
-    //     console.log("action,payload.app ", action.payload.app, state);
     //     return {
     //         ...state,
     //         loading: false,
