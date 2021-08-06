@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity, Text, View, Image } from "react-native";
-import { createIpfsUrl } from '../../utils/IpfsUrl'
-import { Avatar } from 'react-native-paper';
+import { createIpfsInfuraUrl } from '../../utils/IpfsUrl'
 
 // AppCard - COMPONENT
 class AppCard extends Component {
 
     render() {
         const { data, onCardClick } = this.props
-        let icon_url = { uri: createIpfsUrl(data.icon.hash) }
+        let icon_url = { uri: createIpfsInfuraUrl(data.icon.hash) }
         return (
             <TouchableOpacity key={data.appId} style={styles.contentItem} onPress={() => { onCardClick(data) }}>
                 <View style={styles.row}>

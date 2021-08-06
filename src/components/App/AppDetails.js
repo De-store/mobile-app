@@ -1,10 +1,10 @@
 // REACT/REACT_NATIVE IMPORTS
 import React, { Component } from "react";
-import { View, Text, Button, Image, ActivityIndicator, TouchableOpacity, ScrollView, StyleSheet, StatusBar, FlatList } from "react-native";
+import { View, Text, Button, Image, ActivityIndicator, TouchableOpacity, ScrollView, StyleSheet, StatusBar, FlatList, Alert } from "react-native";
 // REDUX IMPORTS
 import { connect } from "react-redux";
 import { Avatar } from 'react-native-paper';
-import { createIpfsUrl } from '../../utils/IpfsUrl'
+import { createIpfsUrl, createIpfsInfuraUrl } from '../../utils/IpfsUrl'
 import RNFetchBlob from 'rn-fetch-blob';
 import { TYPE_APK } from '../../constant/constant'
 
@@ -55,7 +55,7 @@ class AppDetails extends Component {
             apkInstalling: true
         })
         let date = new Date();
-        let FILE_URL = createIpfsUrl(data);
+        let FILE_URL = createIpfsInfuraUrl(data);
 
         let file_ext = '.' + 'apk';
 
@@ -80,8 +80,6 @@ class AppDetails extends Component {
         const android = RNFetchBlob.android
         config(options)
             .fetch('GET', FILE_URL)
-            .progress((received, total) => {
-            })
             .then(res => {
                 // Alert after successful downloading
                 this.setState({
@@ -92,6 +90,18 @@ class AppDetails extends Component {
                 this.setState({
                     apkInstalling: false
                 })
+                Alert.alert(
+                    "Installation failed!",
+                    "Try again later...",
+                    [
+                        {
+                            text: "Cancel",
+                            onPress: () => console.log("Cancel Pressed"),
+                            style: "cancel"
+                        },
+                        { text: "OK", onPress: () => console.log("OK Pressed") }
+                    ]
+                )
             });
     }
 
@@ -112,8 +122,8 @@ class AppDetails extends Component {
                 <ActivityIndicator style={{ marginTop: 10 }} size="small" color="black" />
             )
         else if (Object.keys(data).length) {
-            let icon_url = { uri: createIpfsUrl(data.icon.hash) }
-            let image_url = { uri: createIpfsUrl(data.images.hash) }
+            let icon_url = { uri: createIpfsInfuraUrl(data.icon.hash) }
+            let image_url = { uri: createIpfsInfuraUrl(data.images.hash) }
             return (
 
                 <LinearGradient
@@ -129,10 +139,10 @@ class AppDetails extends Component {
                                 <Avatar.Icon size={34} icon="arrow-left" style={styles.iconBg} />
                             </TouchableOpacity >
                             <TouchableOpacity>
-                                <Avatar.Icon size={34} icon="magnify" style={styles.iconBg}/>
+                                <Avatar.Icon size={34} icon="magnify" style={styles.iconBg} />
                             </TouchableOpacity>
                         </View>
-                        <Avatar.Image size={84} source={icon_url} style={{backgroundColor: "white"}} />
+                        <Avatar.Image size={84} source={icon_url} style={{ backgroundColor: "white" }} />
                     </View>
                     <ScrollView style={styles.innerView} showsVerticalScrollIndicator={false}>
                         {/* Name / Tagline */}
@@ -158,7 +168,7 @@ class AppDetails extends Component {
                                     </TouchableOpacity>
                                     :
                                     <TouchableOpacity onPress={() => { this.installApl(data.name, data.apk.hash) }} style={styles.touchableButton}>
-                                            <Text style={styles.buttonText}>INSTALL</Text>
+                                        <Text style={styles.buttonText}>INSTALL</Text>
                                     </TouchableOpacity>
                             }
                         </View>
