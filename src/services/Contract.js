@@ -48,6 +48,7 @@ import { TYPE_APK } from '../constant/constant'
 export const graphQuery = async (appName = "") => {
 
     const API_URL = "https://api.thegraph.com/subgraphs/name/surajsingla333/de-store-graph";
+    const API_URL_2 = "https://7f9f-103-16-30-190.ngrok.io/subgraphs/name/destore/backend"
 
 
     const tokensQuery = appName === "" ? `
@@ -101,17 +102,31 @@ export const graphQuery = async (appName = "") => {
             listOfApps.push(appData)
         }
 
-        // for (let i in ipfsResponse) {
-        //     const appData = {
-        //         appId: data.data.exampleEntities[i].appId,
-        //         name: ipfsResponse[i].name,
-        //         tagLine: ipfsResponse[i].tagLine,
-        //         description: ipfsResponse[i].description,
-        //         icon: { type: "image/png", hash: ipfsResponse[i].icon },
-        //     }
+        const client_2 = new ApolloClient({
+            uri: API_URL_2,
+            cache: new InMemoryCache()
+        });
 
-        //     listOfApps.push(appData)
-        // }
+        try {
+            const data2 = await client_2.query({
+                query: gql(tokensQuery)
+            })
+            let _data2 = data2.data.exampleEntities;
+
+            for (let i in _data2) {
+                const appData2 = {
+                    appId: _data2[i].RegisteredApp_appId,
+                    name: _data2[i].RegisteredApp_name,
+                    tagLine: _data2[i].RegisteredApp_tagLine,
+                    description: _data2[i].RegisteredApp_description,
+                    icon: { type: "image/png", hash: _data2[i].RegisteredApp_icon }
+                }
+
+                listOfApps.push(appData2)
+            }
+        } catch (e) {
+            return listOfApps
+        }
         return listOfApps
 
 
