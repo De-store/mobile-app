@@ -26,4 +26,4 @@ The query to fetch data from the blockchain is managed using **The Graph**.<br>[
 - **Smart contract (evmos-testnet)**: https://evm.evmos.dev/address/0x5a18b5D8703D4bBf53365582F50f031965fa1Deb/transactions
 - **Mobile application build**: https://slate.host/_/data?cid=bafybeidowfkijlzebcpb7okajqy2zoapckpehogvuundeglelwd4alvxai
 - **The Graph (matic-mumbai)**: https://thegraph.com/legacy-explorer/subgraph/surajsingla333/de-store-graph
-- **The Graph (evmos testnet)**: https://e13d-103-69-24-35.ngrok.io/subgraphs/name/destore/backend/graphql
+- **The Graph (evmos testnet)**: https://eafa-103-216-143-139.ngrok.io/subgraphs/name/destore/backend/graphql
