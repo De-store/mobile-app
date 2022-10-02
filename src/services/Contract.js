@@ -48,7 +48,7 @@ import { TYPE_APK } from '../constant/constant'
 export const graphQuery = async (appName = "") => {
 
     const API_URL = "https://api.thegraph.com/subgraphs/name/surajsingla333/de-store-graph";
-    const API_URL_2 = "https://eafa-103-216-143-139.ngrok.io/subgraphs/name/destore/backend"
+    const API_URL_2 = "https://0331-103-16-30-132.ngrok.io/subgraphs/name/destore/backend"
 
 
     const tokensQuery = appName === "" ? `
